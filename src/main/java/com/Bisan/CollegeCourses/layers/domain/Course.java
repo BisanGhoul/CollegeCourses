@@ -10,10 +10,11 @@ public class Course {
     private int number;
     private double average;
     private boolean updated;
-    private Instant releaseDate;
     private String code;
+    private Instant releaseDate;
 
-    public Course(String name, String prefix, int credits, int level, int number, double average, boolean updated, Instant releaseDate) {
+
+    public Course(String name, String prefix, int credits, int level, int number, double average, boolean updated,  String code, Instant releaseDate) {
         this.name = name;
         this.prefix = prefix;
         this.credits = credits;
@@ -22,7 +23,7 @@ public class Course {
         this.average = average;
         this.updated = updated;
         this.releaseDate = releaseDate;
-        this.code = getCode();
+        this.code = code;
     }
 
     public Course() {
@@ -38,12 +39,22 @@ public class Course {
 
     code: COMP231 which is code for java course.
      */
-    public String getCode(){
-        return this.prefix+this.level+this.credits+this.number;
+//    public String getCode(){
+//        return this.prefix+this.level+this.credits+this.number;
+//    }
+//    public void setCode(String prefix, int level, int credits, int number){
+//        this.code = prefix+level+credits+number;
+//    }
+
+
+    public String getCode() {
+        return code;
     }
-    public void setCode(String prefix, int level, int credits, int number){
-        this.code = prefix+level+credits+number;
+
+    public void setCode(String code) {
+        this.code = code;
     }
+
     public String getPrefix() {
         return prefix;
     }
@@ -52,13 +63,13 @@ public class Course {
         this.prefix = prefix;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
+//    public int getLevel() {
+//        return level;
+//    }
+//
+//    public void setLevel(int level) {
+//        this.level = level;
+//    }
 
     public int getNumber() {
         return number;
@@ -108,10 +119,15 @@ public class Course {
         this.releaseDate = releaseDate;
     }
 
+
     @Override
     public String toString() {
         return "Course{" +
                 "name='" + name + '\'' +
+                ", prefix='" + prefix + '\'' +
+                ", credits=" + credits +
+                ", level=" + level +
+                ", number=" + number +
                 ", average=" + average +
                 ", updated=" + updated +
                 ", releaseDate=" + releaseDate +
