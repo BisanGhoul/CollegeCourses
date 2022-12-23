@@ -26,6 +26,17 @@ public class Course {
         this.code = code;
     }
 
+    public Course(String name, String prefix, int credits, int level, int number, double average, boolean updated, Instant releaseDate) {
+        this.name = name;
+        this.prefix = prefix;
+        this.credits = credits;
+        this.level = level;
+        this.number = number;
+        this.average = average;
+        this.updated = updated;
+        this.releaseDate = releaseDate;
+    }
+
     public Course() {
 
     }
@@ -39,12 +50,14 @@ public class Course {
 
     code: COMP231 which is code for java course.
      */
-//    public String getCode(){
-//        return this.prefix+this.level+this.credits+this.number;
-//    }
-//    public void setCode(String prefix, int level, int credits, int number){
-//        this.code = prefix+level+credits+number;
-//    }
+    public String createCode(){
+        this.code = prefix+level+credits+number;
+        return this.code;
+    }
+    public String createCode(String prefix, int level, int credits, int number){
+        this.code = prefix+level+credits+number;
+        return this.code;
+    }
 
 
     public String getCode() {
@@ -53,6 +66,14 @@ public class Course {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public String getPrefix() {
