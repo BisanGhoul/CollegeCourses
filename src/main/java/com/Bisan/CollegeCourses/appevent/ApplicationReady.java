@@ -9,8 +9,9 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import java.awt.print.Book;
+import java.time.Instant;
 
-@Component
+//@Component
 public class ApplicationReady {
 
     CourseRepository courseRepository;
@@ -23,6 +24,22 @@ public class ApplicationReady {
     @EventListener(ApplicationReadyEvent.class)
     public void doSmthAfterStartUP(){
         Course course =courseRepository.getCourse(1L);
-        System.out.println(course.toString());
+       // System.out.println(course.toString());
+
+        Course courseToBeCreated = new Course("javaFX","COMP",3,2,10,70.5,false,Instant.now());
+        //c1.createCode();
+        //System.out.println(c1.toString());
+        //Course createdCourse = courseRepository.createCourse(courseToBeCreated);
+        //System.out.println(createdCourse.toString());
+
+
+//        Course updatedCourse = courseRepository.updateCourse(courseToBeCreated,1L);
+//        System.out.println(updatedCourse.toString());
+
+        courseRepository.deleteCourse(3L);
+        courseRepository.deleteCourse(4L);
+
     }
+
+
 }
