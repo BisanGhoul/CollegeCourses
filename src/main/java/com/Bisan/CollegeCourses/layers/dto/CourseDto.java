@@ -23,6 +23,7 @@ public class CourseDto {
         this.average = average;
         this.updated = updated;
         this.releaseDate = releaseDate;
+
     }
 
     public CourseDto(String name, String prefix, int credits, int level, int number, double average, boolean updated, String code, Instant releaseDate) {
@@ -35,6 +36,9 @@ public class CourseDto {
         this.updated = updated;
         this.code = code;
         this.releaseDate = releaseDate;
+    }
+
+    public CourseDto() {
     }
 
     public String getName() {
