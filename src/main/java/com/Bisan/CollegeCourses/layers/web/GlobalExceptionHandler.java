@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class GlobalExceptionHandler {
 
 
-    @ResponseBody
+    @ResponseBody //to convert the error message to json
     @ExceptionHandler(DataNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorMessage handleDataNotFoundException(DataNotFoundException exception) {
@@ -21,7 +21,7 @@ public class GlobalExceptionHandler {
     }
 
     @ResponseBody
-    @ExceptionHandler(SemanticException.class) // <-
+    @ExceptionHandler(SemanticException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorMessage handleSemanticException(SemanticException exception) {
         return new ErrorMessage(exception.getMessage());
@@ -29,17 +29,17 @@ public class GlobalExceptionHandler {
 
 
     @ResponseBody
-    @ExceptionHandler(ApplicationException.class) // <-
+    @ExceptionHandler(ApplicationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorMessage handleGeneralApplicationException(ApplicationException exception) {
         return new ErrorMessage(exception.getMessage());
     }
 
     @ResponseBody
-    @ExceptionHandler(Exception.class) // <-
+    @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorMessage handleException(Exception exception) {
-        //
+        //returning the stack trace for the error is bad practice
         return new ErrorMessage(exception.getMessage());
     }
 

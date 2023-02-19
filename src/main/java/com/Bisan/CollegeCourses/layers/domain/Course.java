@@ -1,8 +1,15 @@
 package com.Bisan.CollegeCourses.layers.domain;
 
+import javax.persistence.*;
 import java.time.Instant;
 
+
+@Entity //tells JPA provider (hibernate) that this is meta info for SQL table
+@Table(name="courses", schema = "public") //represents table courses in DB
 public class Course {
+    @Id
+    @GeneratedValue(generator = "courses_id_seq") // we put a name of sequence that what generated when we added a new table
+     private Long id; //maps boo id in DB table
     private String name;
     private String prefix;
     private int credits;
@@ -13,6 +20,9 @@ public class Course {
     private String code;
     private Instant releaseDate;
 
+    //violates SOLID
+    @Transient //field not managrd by hibernate
+    private String newString;
 
     public Course(String name, String prefix, int credits, int level, int number, double average, boolean updated,  String code, Instant releaseDate) {
         this.name = name;
@@ -41,15 +51,23 @@ public class Course {
 
     }
 
-    /*
-    returns the code for a specific course like this for example:
-    prefix: COMP (Technology Faculty)
-    level: 2 (2nd year)
-    credits: 3 (3 hours per week)
-    number: 1 (course number in a specific level)
+    public Long getId() {
+        return id;
+    }
 
-    code: COMP231 which is code for java course.
-     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /*
+        returns the code for a specific course like this for example:
+        prefix: COMP (Technology Faculty)
+        level: 2 (2nd year)
+        credits: 3 (3 hours per week)
+        number: 1 (course number in a specific level)
+
+        code: COMP231 which is code for java course.
+         */
     public String createCode(){
         this.code = prefix+level+credits+number;
         return this.code;

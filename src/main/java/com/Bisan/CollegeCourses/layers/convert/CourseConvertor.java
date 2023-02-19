@@ -4,6 +4,8 @@ import com.Bisan.CollegeCourses.layers.domain.Course;
 import com.Bisan.CollegeCourses.layers.dto.CourseDto;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component //this or define it as a Bean in AppConfig
 public class CourseConvertor {
     public CourseDto fromDomain(Course course) {

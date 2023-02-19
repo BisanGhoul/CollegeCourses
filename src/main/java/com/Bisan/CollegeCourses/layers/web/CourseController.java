@@ -6,6 +6,8 @@ import com.Bisan.CollegeCourses.layers.service.CourseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 // Controller is a class that service as "API" that our service expose
 @RestController
 @RequestMapping("/courses") // all mapping methods will have a "books" as a parent path
@@ -26,8 +28,9 @@ public class CourseController {
     @RequestMapping(method = RequestMethod.POST) // POST method is ALWAYS for save new resource
     @ResponseStatus(HttpStatus.CREATED) //status -> 201
     public CourseDto createBook(@RequestBody CourseDto courseDto) { // Spring will convert HTTP body to the instance of
-        // @RequestBody argument
-        return courseService.createCourse(courseDto);
+                                                                    // @RequestBody argument
+        return courseService.createCourse(courseDto);               //calls all getters
+
     }
 
     @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
@@ -41,5 +44,21 @@ public class CourseController {
     public CourseDto updateBook(@PathVariable Long id,
                               @RequestBody CourseDto courseDto) {
         return courseService.updateCourse(courseDto, id);
+    }
+
+    @RequestMapping(path ="/all", method = RequestMethod.GET)
+    public List<CourseDto> getAllCourses() {
+
+            return courseService.getAllCourses();
+
+    }
+
+        @RequestMapping(path ="/search", method = RequestMethod.GET)
+        public List<CourseDto> search(@RequestParam("titleContains") String word) {
+                if (word == null) {
+                    return courseService.getAllCourses();
+                } else {
+                    return courseService.getCourseWithTitleThatContains(word);
+                }
     }
 }

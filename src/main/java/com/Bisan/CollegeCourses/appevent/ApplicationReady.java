@@ -23,7 +23,7 @@ public class ApplicationReady {
     //will run onc when project is ready
     @EventListener(ApplicationReadyEvent.class)
     public void doSmthAfterStartUP(){
-        Course course =courseRepository.getCourse(1L);
+//        Course course =courseRepository.getCourse(1L);
        // System.out.println(course.toString());
 
         Course courseToBeCreated = new Course("javaFX","COMP",3,2,10,70.5,false,Instant.now());
